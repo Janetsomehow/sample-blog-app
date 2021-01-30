@@ -96,26 +96,80 @@
 
 <!--COMMENT VIEW END HERE-->
 
-<!--CATEGORY VIEW START HERE-->
+<!--CATEGORY User START HERE-->
 <!--complete logic for category view-->
-<!--CATEGORY VIEW END HERE-->
+<!--CATEGORY User END HERE-->
+
+<% if (title == 'Create User') { %>
+    <div class="col-sm-8">    
+        <div class="jumbotron">
+            <form action="" method="user">
+              User Title:<br>
+              <input type="text" name="user_title" value="User Title">
+              <br>
+              User Body:<br>
+              <input type="text" name="user_body" value="User Body">
+              <br><br>
+              <input type="submit" value="Submit">
+            </form>
+        </div>
+    </div>
+<% } else if (title == 'Delete User') { %>
+     
+<% } else if (title == 'Update User') { %>
+    <div class="col-sm-8">    
+        <div class="jumbotron">
+            <form action="/blog/user/<%= user.id %>/update" method="user">
+              User Title:<br>
+              <input type="text" name="user_title" value="<%= user.user_title %>">
+              <br>
+              User Body:<br>
+              <input type="text" name="user_body" value="<%= user.user_body %>">
+              <br><br>
+              <input type="submit" value="Update">
+            </form>
+        </div>
+    </div>
+<% } else if (title == 'User Details') { %>
+    <div class="col-sm-8">    
+        <div class="">
+             <h1>Details of a Single User</h1>
+             <p>I am a user for this ID = <%= user.id %></p>
+             <p>User Title: <%= user.user_title %></p>
+             <p>User Body:  <%= user.user_body %></p>
+             <a href="/blog/user/<%= user.id %>/update">Edit  User</a> | <a href="/blog/postuser/<%= user.id %>/delete">Delete User</a>
+        </div>
+    </div>
+<% } else if (title == 'User List') { %>
+    <div class="col-sm-8">    
+        <div class="">
+        <ol>
+        <% users.forEach(function(user) { %>
+                <li>
+                    <h4><a href="/blog/user/<%= user.id %>"> <%= user.first_name %> </a></h4>
+                    <p> Firstname: <%= user.firstname%> </p>
+                  <p>The main body of the user <%= user.user_body %></p>
+                     <a href="/blog/user/<%= user.id %>/update">Edit  User</a> | <a href="/blog/user/<%= user.id %>/delete">Delete User</a>
+                </li>
+            <br/>
+        <% }); %>
+        </ol>
+    </div>
+    </div>
+<% } else { %>
+    <div class="col-sm-8">    
+        <div class="jumbotron">
+            <h1><%= title %></h1>
+            <p>The main content of the page goes here</p>
+        </div>
+    </div>
+<% } %>
+<!--POST VIEW END HERE-->
 
 
 <!--do this for all the routes-->
 <!--This is how you will dynamically change the content on the main page-->
-<% if (title == 'Create User') { %>
- 
-<% } else if (title == 'Delete User') { %>
-     
-<% } else if (title == 'Update User') { %>
-   
-<% } else if (title == 'User Details') { %>
- 
-<% } else if (title == 'User List') { %>
-  
-<% } else { %>
-  
-<% } %>
+
 <!--we already know that left and right side bar are mostly constant-->
 
 
