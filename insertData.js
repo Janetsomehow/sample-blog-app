@@ -35,12 +35,12 @@ pool.connect((err, client, done) => {
 
 // insert a record into our table
 pool.query(
-    `INSERT INTO UserJanetEssienJohn2021 
-                 (ID, COUNTRY, FIRST_NAME, LAST_NAME, Email, PASSWORD, PHONE, CREATED_DT)
+    `INSERT INTO UserJanetJ 
+                 (ID, FIRST_NAME, LAST_NAME, CREATED_DT)
                  VALUES 
-                 ('1', 'Nigeria',  'Ugo', 'Parker' , 'ugoparker27@gmail.com', 'ugo2020', '08182223345', '2021-02-21'),
-                 ('2', 'Brazil', 'Janet', 'John' , 'Janetjohn@gmail.com', 'Janet23', '09023445553',  '2021-01-21'),
-                 ('3', 'Ghana',  'George', 'George', 'Georgesketch23@gmail.com', 'george22', '09036522526',  '2021-01-21')
+                 ('1',  'Ugo', 'Parker' ,   '2021-02-21'),
+                 ('2',  'Janet', 'John' ,   '2021-01-21'),
+                 ('3',   'George', 'George', '2021-01-21')
                  `,
     (err, res) => {
       if(err) {

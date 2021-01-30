@@ -4,7 +4,7 @@ var router = express.Router();
 
 // Require our controllers.
 var author_controller = require('../controllers/authorController');
-var user_controller = require('../controllers/userController');
+var userController = require('../controllers/userController');
 var post_controller = require('../controllers/postController'); 
 var category_controller = require('../controllers/categoryController');
 var comment_controller = require('../controllers/commentController');
@@ -66,28 +66,33 @@ router.get('/authors', author_controller.author_list);
 // USER ROUTES ///
 
 // GET request for creating Author. NOTE This must come before route for id (i.e. display author).
-router.get('/user/create', user_controller.user_create_get);
+/// User ROUTES ///
 
-// POST request for creating Author.
-router.post('/user/create', user_controller.user_create_post);
+// GET request for creating Users. NOTE This must come before route for id (i.e. display author).
+router.get('/user/create', userController.user_create_get);
 
-// GET request to delete Author.
-router.get('/user/:user_id/delete', user_controller.user_delete_get);
+// POST request for creating Users.
+router.post('/user/create', userController.user_create_post);
 
-// POST request to delete Author
-router.post('/user/:author_id/delete', user_controller.user_delete_post);
+// GET request to delete Users.
+router.get('/user/:author_id/delete', userController.user_delete_get);
 
-// GET request to update Author.
-router.get('/user/:user_id/update', user_controller.user_update_get);
+// POST request to delete Users
+router.post('/user/:author_id/delete', userController.user_delete_post);
 
-// POST request to update Author.
-router.post('/user/:user_id/update', user_controller.user_update_post);
+// GET request to update Users.
+router.get('/user/:author_id/update', userController.user_update_get);
 
-// GET request for one Author.
-router.get('/user/:user_id', user_controller.user_detail);
+// POST request to update Users.
+router.post('/user/:author_id/update', userController.user_update_post);
 
-// GET request for list of all Authors.
-router.get('/user', user_controller.user_list);
+// GET request for one Users.
+router.get('/user/:author_id', userController.user_detail);
+
+// GET request for list of all Users.
+router.get('/user', userController.user_list);
+
+
 
 
 /// Category ROUTES ///

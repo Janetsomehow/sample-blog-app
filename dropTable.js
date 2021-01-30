@@ -1,4 +1,5 @@
 // we use pg library to request connection pool from postgres database
+// psql -h traineedb.cgq0reqixqsd.us-east-1.rds.amazonaws.com -d postgres -U traineeUser password is traineePassword
 const { Pool } = require('pg')
 
 // we connect to pg using pool we requested
@@ -17,7 +18,7 @@ pool.on('error', (err, client) => {
   process.exit(-1)
 })
 
-// if no error on idle client, pool connects to database
+// if no error on idel client, pool connects to database
 pool.connect((err, client, done) => {
     //if there is an error with our database connection strings
     if (err) {
@@ -31,24 +32,16 @@ pool.connect((err, client, done) => {
     // sometime we might also want to export this connection for other resources
 });
 
-// now lets create a new table called TeamManifest2021 - replace Manifest with your name
-pool.query(
-  `CREATE TABLE UserJanetJ(
-    ID SERIAL PRIMARY KEY, 
-    FIRST_NAME VARCHAR(40) NOT NULL, 
-    LAST_NAME VARCHAR(40) NOT NULL,
-    CREATED_DT DATE NOT NULL)`, 
-  (err, res) => {
-      if(err) {
-        console.log('Error or issue with table creation' , err);
-    } else {
-        console.log('Team Table Created Successfully')
-        console.log(res);
+// drop table if it exist in our database
+pool.query('DROP TABLE TeamManifest2021', (err, res) => {
+  if(err) {
+      console.log('Table does not exist - or issue with deletion');
+   } else {
+      console.log('Table Deleted Successfully')
+      console.log(res);
    }
-  } 
-);
-
-pool.end();
+  //
+});
 
 // export connection
 module.exports = pool;
